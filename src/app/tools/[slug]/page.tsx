@@ -6,6 +6,7 @@ import IpLookup from "@/components/tools/IpLookup";
 import AgeCalculator from "@/components/tools/AgeCalculator";
 import PasswordGenerator from "@/components/tools/PasswordGenerator";
 import MarkdownPreviewer from "@/components/tools/MarkdownPreviewer";
+import QrCodeGenerator from "@/components/tools/QrCodeGenerator";
 
 
 type Props = {
@@ -29,11 +30,18 @@ export default function ToolPage({ params }: Props) {
       {tool.slug === "age" && <AgeCalculator />}
       {tool.slug === "password" && <PasswordGenerator />}
       {tool.slug === "markdown" && <MarkdownPreviewer />}
+      {tool.slug === "qr" && <QrCodeGenerator />}
 
       {/* Fallback if component is not yet created */}
-      {!["bmi", "weather", "ip-lookup", "age", "password", "markdown"].includes(
-        tool.slug
-      ) && (
+      {![
+        "bmi",
+        "weather",
+        "ip-lookup",
+        "age",
+        "password",
+        "markdown",
+        "qr",
+      ].includes(tool.slug) && (
         <p className="text-gray-500">
           Component for <strong>{tool.name}</strong> coming soon...
         </p>
