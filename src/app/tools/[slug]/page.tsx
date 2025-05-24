@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import BmiCalculator from "@/components/tools/BmiCalculator";
 import WeatherChecker from "@/components/tools/WeatherChecker";
 import IpLookup from "@/components/tools/IpLookup";
+import AgeCalculator from "@/components/tools/AgeCalculator";
 
 type Props = {
   params: { slug: string };
@@ -18,12 +19,16 @@ export default function ToolPage({ params }: Props) {
         {tool.icon} {tool.name}
       </h1>
 
+      {/* Render tool component based on slug */}
       {tool.slug === "bmi" && <BmiCalculator />}
       {tool.slug === "weather" && <WeatherChecker />}
       {tool.slug === "ip-lookup" && <IpLookup />}
-      {!["bmi", "weather", "ip-lookup"].includes(tool.slug) && (
+      {tool.slug === "age" && <AgeCalculator />}
+
+      {/* Fallback if component is not yet created */}
+      {!["bmi", "weather", "ip-lookup", "age"].includes(tool.slug) && (
         <p className="text-gray-500">
-          Component for "{tool.name}" coming soon...
+          Component for <strong>{tool.name}</strong> coming soon...
         </p>
       )}
     </div>
