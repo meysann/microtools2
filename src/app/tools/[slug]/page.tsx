@@ -5,6 +5,8 @@ import WeatherChecker from "@/components/tools/WeatherChecker";
 import IpLookup from "@/components/tools/IpLookup";
 import AgeCalculator from "@/components/tools/AgeCalculator";
 import PasswordGenerator from "@/components/tools/PasswordGenerator";
+import MarkdownPreviewer from "@/components/tools/MarkdownPreviewer";
+
 
 type Props = {
   params: { slug: string };
@@ -26,9 +28,10 @@ export default function ToolPage({ params }: Props) {
       {tool.slug === "ip-lookup" && <IpLookup />}
       {tool.slug === "age" && <AgeCalculator />}
       {tool.slug === "password" && <PasswordGenerator />}
+      {tool.slug === "markdown" && <MarkdownPreviewer />}
 
       {/* Fallback if component is not yet created */}
-      {!["bmi", "weather", "ip-lookup", "age", "password"].includes(
+      {!["bmi", "weather", "ip-lookup", "age", "password", "markdown"].includes(
         tool.slug
       ) && (
         <p className="text-gray-500">
