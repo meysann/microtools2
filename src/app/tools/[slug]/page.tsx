@@ -9,6 +9,7 @@ import MarkdownPreviewer from "@/components/tools/MarkdownPreviewer";
 import QrCodeGenerator from "@/components/tools/QrCodeGenerator";
 import CurrencyConverter from "@/components/tools/CurrencyConverter";
 import TimezoneConverter from "@/components/tools/TimezoneConverter";
+import TextSummarizer from "@/components/tools/TextSummarizer";
 
 
 type Props = {
@@ -35,6 +36,7 @@ export default function ToolPage({ params }: Props) {
       {tool.slug === "qr" && <QrCodeGenerator />}
       {tool.slug === "currency" && <CurrencyConverter />}
       {tool.slug === "timezone" && <TimezoneConverter />}
+      {tool.slug === "summarizer" && <TextSummarizer />}
 
       {/* Fallback if component is not yet created */}
       {![
@@ -47,6 +49,7 @@ export default function ToolPage({ params }: Props) {
         "qr",
         "currency",
         "timezone",
+        "summarizer",
       ].includes(tool.slug) && (
         <p className="text-gray-500">
           Component for <strong>{tool.name}</strong> coming soon...
