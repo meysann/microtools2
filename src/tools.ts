@@ -15,5 +15,6 @@ export interface Tool {
     { name: "Age Calculator", slug: "age", icon: "🎂" },
     { name: "Timezone Converter", slug: "timezone", icon: "🌍" },
     { name: "Text Summarizer", slug: "summarizer", icon: "🧠" },
+    { name: "IP Info Lookup", slug: "ip-lookup", icon: "🌍" },
   ];
   

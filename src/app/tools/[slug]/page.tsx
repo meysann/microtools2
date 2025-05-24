@@ -2,6 +2,7 @@ import { tools } from "@/tools";
 import { notFound } from "next/navigation";
 import BmiCalculator from "@/components/tools/BmiCalculator";
 import WeatherChecker from "@/components/tools/WeatherChecker";
+import IpLookup from "@/components/tools/IpLookup";
 
 type Props = {
   params: { slug: string };
@@ -19,7 +20,8 @@ export default function ToolPage({ params }: Props) {
 
       {tool.slug === "bmi" && <BmiCalculator />}
       {tool.slug === "weather" && <WeatherChecker />}
-      {!["bmi", "weather"].includes(tool.slug) && (
+      {tool.slug === "ip-lookup" && <IpLookup />}
+      {!["bmi", "weather", "ip-lookup"].includes(tool.slug) && (
         <p className="text-gray-500">
           Component for "{tool.name}" coming soon...
         </p>
