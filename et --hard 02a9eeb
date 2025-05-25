@@ -1,0 +1,22 @@
+[33m02a9eeb[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/tool-system[m[33m, [m[1;31morigin/feature/tool-system[m[33m)[m Add password generator tool
+[33m83ae105[m Verified responsive and dark mode compatibility
+[33m7a13bb5[m Add popular tools section below categories on homepage
+[33m54e2f1e[m Improve ToolCard UI with RTL and dark mode styles
+[33me0c621a[m Improve homepage: show both search bar and category grid
+[33m677d39d[m Create Persian homepage with hero and category grid
+[33m83b5996[m Add category filtering page with dynamic slug support
+[33mc8263f8[m Fix tools list import path to include all tools
+[33m936acb2[m Add dynamic tool component loading by slug
+[33m45d57cf[m Add dynamic route for tools based on slug
+[33m327f55e[m Add tools.ts metadata with initial tool list
+[33m413ffd5[m[33m ([m[1;31morigin/feature/dark-mode[m[33m, [m[1;32mfeature/dark-mode[m[33m)[m Update Header: add ThemeToggle and RTL layout
+[33mb3a2fce[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m Add Text Summarizer using ApyHub API (free version)
+[33mf65af12[m Add Timezone Converter using TimeZoneDB API
+[33m163b52a[m add Currency Converter to use Frankfurter.app (keyless)
+[33m9393935[m Add QR Code Generator using goqr.me API with download option
+[33m34830ae[m Add Markdown Previewer with real-time rendering using marked
+[33m114d1cb[m Add Password Generator with length control, options, and clipboard copy
+[33mb91421f[m Add Age Calculator tool with date input and age calculation logic
+[33m6d34c9c[m Add IP Info Lookup tool with API route and responsive UI
+[33m7ff6a59[m Initial full setup: layout, tools system, BMI & Weather tool
+[33m1a2309d[m Initial Next.js setup with Tailwind

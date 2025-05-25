@@ -22,6 +22,7 @@ export const tools: Tool[] = [
     icon: "⚖️",
     category: "محاسباتی",
     description: "محاسبه شاخص توده بدنی (BMI)",
+    component: "BmiCalculator",
     tags: ["سلامتی", "وزن", "توده بدنی", "BMI"],
   },
   {
@@ -30,6 +31,7 @@ export const tools: Tool[] = [
     icon: "🌡️",
     category: "مبدل‌ها",
     description: "تبدیل بین سلسیوس، فارنهایت و کلوین",
+    component: "TemperatureConverter",
     tags: ["دما", "converter", "celsius", "fahrenheit"],
   },
   {
@@ -38,6 +40,7 @@ export const tools: Tool[] = [
     icon: "✍️",
     category: "متنی",
     description: "شمارش تعداد کلمات و حروف یک متن",
+    component: "WordCounter",
     tags: ["کلمه", "متن", "word count"],
   },
   {
@@ -46,6 +49,7 @@ export const tools: Tool[] = [
     icon: "🔐",
     category: "رمزنگاری",
     description: "ساخت رمز عبور قوی با یک کلیک",
+    component: "PasswordGenerator",
     tags: ["password", "security", "رمز", "generator"]
   }
 ];
