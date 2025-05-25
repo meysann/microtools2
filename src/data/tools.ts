@@ -40,4 +40,12 @@ export const tools: Tool[] = [
     description: "شمارش تعداد کلمات و حروف یک متن",
     tags: ["کلمه", "متن", "word count"],
   },
+  {
+    name: "تولید رمز عبور",
+    slug: "password-generator",
+    icon: "🔐",
+    category: "رمزنگاری",
+    description: "ساخت رمز عبور قوی با یک کلیک",
+    tags: ["password", "security", "رمز", "generator"]
+  }
 ];

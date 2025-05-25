@@ -12,6 +12,9 @@ interface Props {
 const toolComponents: Record<string, any> = {
   bmi: dynamic(() => import("@/components/tools/BmiCalculator")),
   "word-counter": dynamic(() => import("@/components/tools/WordCounter")),
+  "password-generator": dynamic(
+    () => import("@/components/tools/PasswordGenerator")
+  ), // ✅ new
 };
 
 export default function ToolPage({ params }: Props) {
