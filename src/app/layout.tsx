@@ -3,7 +3,7 @@ import Header from "../components/Header";
 
 export const metadata = {
   title: "MicroTools",
-  description: "A collection of simple online tools",
+  description: "مجموعه‌ای از ابزارهای آنلاین ساده و کاربردی",
 };
 
 export default function RootLayout({
@@ -12,10 +12,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="bg-white text-gray-900">
+    <html lang="fa" dir="rtl">
+      <body className="font-vazir">
         <Header />
-        <main className="max-w-4xl mx-auto p-4">{children}</main>
+        {children}
       </body>
     </html>
   );
