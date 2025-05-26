@@ -22,7 +22,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
-        <MobileNav /> {/* ✅ Add mobile bottom nav */}
+        <MobileNav />
       </body>
     </html>
   );

@@ -88,8 +88,8 @@ export default function HomePage() {
         </section>
       ) : (
         <>
-          {/* Category Section */}
-          <section>
+          {/* ✅ Category Section with ID */}
+          <section id="categories">
             <h2 className="text-2xl font-semibold mb-4 text-blue-700 dark:text-blue-400">
               📂 دسته‌بندی ابزارها
             </h2>
@@ -113,8 +113,8 @@ export default function HomePage() {
             </div>
           </section>
 
-          {/* Popular Tools */}
-          <section>
+          {/* ✅ Popular Tools with ID */}
+          <section id="popular-tools">
             <h2 className="text-xl font-semibold mt-8 mb-4 text-blue-700 dark:text-blue-400">
               🌟 ابزارهای پر استفاده
             </h2>

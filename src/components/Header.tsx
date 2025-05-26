@@ -47,9 +47,9 @@ export default function Header() {
         <div className="flex items-center gap-6 relative">
           <Link
             href="/"
-            className="text-xl font-bold text-blue-600 dark:text-blue-400"
+            className="text-xl font-bold text-blue-600 dark:text-blue-400 flex items-center gap-1"
           >
-            🧰 ابزارها
+            🧰 <span>ابزارها</span>
           </Link>
 
           <Link
