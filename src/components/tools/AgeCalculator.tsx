@@ -1,99 +1,105 @@
 "use client";
+
 import { useState } from "react";
+import DatePicker from "react-multi-date-picker";
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
+import moment from "moment-jalaali";
+
+moment.loadPersian({ usePersianDigits: true });
+
+type AgeData = {
+  years: number;
+  months: number;
+  days: number;
+  ageInDays: number;
+  dayOfWeekBorn: string;
+  daysUntilBirthday: number;
+  nextBirthday: string;
+};
 
 export default function AgeCalculator() {
-  const [birthDate, setBirthDate] = useState("");
-  const [results, setResults] = useState<any>(null);
+  const [birthDate, setBirthDate] = useState<any>(null);
+  const [result, setResult] = useState<AgeData | null>(null);
 
   const calculateAge = () => {
-    if (!birthDate) return setResults(null);
+    if (!birthDate) return;
 
-    const birth = new Date(birthDate);
-    const today = new Date();
+    const gregorian = birthDate.toDate();
+    const birth = moment(gregorian);
+    const today = moment();
 
-    // Years / months / days calculation
-    let years = today.getFullYear() - birth.getFullYear();
-    let months = today.getMonth() - birth.getMonth();
-    let days = today.getDate() - birth.getDate();
+    let years = today.diff(birth, "years");
+    birth.add(years, "years");
 
-    if (days < 0) {
-      months--;
-      days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
-    }
-    if (months < 0) {
-      years--;
-      months += 12;
-    }
+    let months = today.diff(birth, "months");
+    birth.add(months, "months");
 
-    // Total days
-    const ageInDays = Math.floor(
-      (today.getTime() - birth.getTime()) / (1000 * 60 * 60 * 24)
-    );
+    let days = today.diff(birth, "days");
 
-    // Next birthday
-    const nextBirthday = new Date(
-      today.getFullYear(),
-      birth.getMonth(),
-      birth.getDate()
-    );
-    if (nextBirthday < today) {
-      nextBirthday.setFullYear(today.getFullYear() + 1);
+    const ageInDays = today.diff(moment(gregorian), "days");
+
+    const nextBirthday = moment(gregorian).year(today.year());
+    if (nextBirthday.isBefore(today)) {
+      nextBirthday.add(1, "year");
     }
 
-    const msUntilBirthday = nextBirthday.getTime() - today.getTime();
-    const daysUntilBirthday = Math.ceil(
-      msUntilBirthday / (1000 * 60 * 60 * 24)
-    );
+    const daysUntilBirthday = nextBirthday.diff(today, "days");
+    const dayOfWeekBorn = moment(gregorian).format("dddd");
 
-    // Day of week born
-    const dayOfWeekBorn = birth.toLocaleDateString("en-US", {
-      weekday: "long",
-    });
-
-    setResults({
+    setResult({
       years,
       months,
       days,
       ageInDays,
-      nextBirthday: nextBirthday.toDateString(),
+      nextBirthday: nextBirthday.format("jYYYY/jMM/jDD"),
       daysUntilBirthday,
       dayOfWeekBorn,
     });
   };
 
   return (
-    <div className="space-y-4 max-w-md">
-      <input
-        type="date"
-        value={birthDate}
-        onChange={(e) => setBirthDate(e.target.value)}
-        className="border p-2 rounded w-full"
-      />
+    <div className="space-y-6 max-w-xl mx-auto text-right">
+      <div className="space-y-2">
+        <label className="block font-semibold">تاریخ تولد (شمسی):</label>
+        <DatePicker
+          value={birthDate}
+          onChange={setBirthDate}
+          calendar={persian}
+          locale={persian_fa}
+          format="YYYY/MM/DD"
+          calendarPosition="bottom-right"
+          inputClass="w-full p-2 border rounded text-right"
+          containerClassName="w-full"
+        />
+      </div>
+
       <button
         onClick={calculateAge}
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
       >
-        Calculate Age
+        محاسبه سن
       </button>
 
-      {results && (
-        <div className="bg-gray-50 p-4 rounded shadow space-y-2">
+      {result && (
+        <div className="bg-gray-100 dark:bg-gray-800 text-sm sm:text-base p-4 rounded shadow space-y-2 mt-4">
           <p>
-            <strong>Exact Age:</strong> {results.years} years, {results.months}{" "}
-            months, {results.days} days
+            🎂 <strong>سن دقیق:</strong> {result.years} سال، {result.months}{" "}
+            ماه، {result.days} روز
           </p>
           <p>
-            <strong>Total Days Alive:</strong> {results.ageInDays} days
+            📅 <strong>مجموع روزهای زندگی:</strong>{" "}
+            {result.ageInDays.toLocaleString()} روز
           </p>
           <p>
-            <strong>Born On:</strong> {results.dayOfWeekBorn}
+            📆 <strong>روز هفته تولد:</strong> {result.dayOfWeekBorn}
           </p>
           <p>
-            <strong>Next Birthday:</strong> {results.nextBirthday}
+            🎉 <strong>تولد بعدی:</strong> {result.nextBirthday}
           </p>
           <p>
-            <strong>Days Until Birthday:</strong> {results.daysUntilBirthday}{" "}
-            days
+            ⏳ <strong>روز باقی‌مانده تا تولد:</strong>{" "}
+            {result.daysUntilBirthday} روز
           </p>
         </div>
       )}
