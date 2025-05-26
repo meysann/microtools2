@@ -1,10 +1,14 @@
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import MobileNav from "@/components/MobileNav";
 
 export const metadata = {
   title: "MicroTools",
-  description: "مجموعه‌ای از ابزارهای ساده، رایگان و فارسی",
+  description: "مجموعه‌ای رایگان از ابزارهای آنلاین — ساده، سریع، فارسی",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -18,6 +22,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <MobileNav /> {/* ✅ Add mobile bottom nav */}
       </body>
     </html>
   );
