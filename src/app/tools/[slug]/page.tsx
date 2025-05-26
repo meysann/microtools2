@@ -18,6 +18,36 @@ export default function ToolPage({ params }: Props) {
           {tool.name} - ابزار {tool.category}
         </title>
         <meta name="description" content={tool.description} />
+
+        {/* Open Graph */}
+        <meta
+          property="og:title"
+          content={`${tool.name} - ابزار ${tool.category}`}
+        />
+        <meta property="og:description" content={tool.description} />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content={`http://localhost:3000/tools/${tool.slug}`}
+        />
+        <meta property="og:locale" content="fa_IR" />
+        <meta property="og:site_name" content="ابزارها" />
+        <meta
+          property="og:image"
+          content={`http://localhost:3000/og/${tool.slug}.png`}
+        />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content={`${tool.name} - ابزار ${tool.category}`}
+        />
+        <meta name="twitter:description" content={tool.description} />
+        <meta
+          name="twitter:image"
+          content={`http://localhost:3000/og/${tool.slug}.png`}
+        />
       </Head>
 
       <div className="p-6 max-w-4xl mx-auto space-y-6 text-right">
