@@ -1,13 +1,21 @@
 "use client";
-import { useState, useEffect } from "react";
 
-// Supported currencies by Frankfurter.app
-const CURRENCIES = ["USD", "EUR", "IRR", "GBP", "JPY", "CAD", "TRY"];
+import { useEffect, useState } from "react";
+
+const CURRENCIES = [
+  { code: "USD", name: "دلار آمریکا" },
+  { code: "EUR", name: "یورو" },
+  { code: "IRR", name: "ریال ایران" },
+  { code: "GBP", name: "پوند انگلیس" },
+  { code: "JPY", name: "ین ژاپن" },
+  { code: "CAD", name: "دلار کانادا" },
+  { code: "TRY", name: "لیر ترکیه" },
+];
 
 export default function CurrencyConverter() {
   const [amount, setAmount] = useState(1);
   const [from, setFrom] = useState("USD");
-  const [to, setTo] = useState("EUR");
+  const [to, setTo] = useState("IRR");
   const [result, setResult] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -31,11 +39,11 @@ export default function CurrencyConverter() {
         setResult(data.rates[to]);
       } else {
         setResult(null);
-        setError("No rate found.");
+        setError("نرخ تبدیل پیدا نشد.");
       }
-    } catch (err) {
+    } catch {
       setResult(null);
-      setError("Conversion failed.");
+      setError("❌ تبدیل ارز انجام نشد. لطفاً اتصال را بررسی کنید.");
     } finally {
       setLoading(false);
     }
@@ -46,53 +54,66 @@ export default function CurrencyConverter() {
   }, [amount, from, to]);
 
   return (
-    <div className="space-y-4 max-w-md">
-      <div className="flex gap-2">
-        <input
-          type="number"
-          value={amount}
-          min={0}
-          onChange={(e) => setAmount(Number(e.target.value))}
-          className="border p-2 rounded w-1/2"
-        />
-        <select
-          value={from}
-          onChange={(e) => setFrom(e.target.value)}
-          className="border p-2 rounded w-1/2"
-        >
-          {CURRENCIES.map((cur) => (
-            <option key={cur}>{cur}</option>
-          ))}
-        </select>
+    <div className="space-y-6 max-w-md mx-auto text-right">
+      <h2 className="text-xl font-bold">🔁 تبدیل ارز</h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label className="block mb-1 font-semibold">مقدار:</label>
+          <input
+            type="number"
+            min={0}
+            value={amount}
+            onChange={(e) => setAmount(Number(e.target.value))}
+            className="w-full border p-2 rounded dark:bg-gray-800 dark:text-white"
+          />
+        </div>
+
+        <div>
+          <label className="block mb-1 font-semibold">از ارز:</label>
+          <select
+            value={from}
+            onChange={(e) => setFrom(e.target.value)}
+            className="w-full border p-2 rounded dark:bg-gray-800 dark:text-white"
+          >
+            {CURRENCIES.map((c) => (
+              <option key={c.code} value={c.code}>
+                {c.code} - {c.name}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
-      <div className="flex gap-2 items-center">
-        <span>to</span>
+      <div>
+        <label className="block mb-1 font-semibold">به ارز:</label>
         <select
           value={to}
           onChange={(e) => setTo(e.target.value)}
-          className="border p-2 rounded w-full"
+          className="w-full border p-2 rounded dark:bg-gray-800 dark:text-white"
         >
-          {CURRENCIES.map((cur) => (
-            <option key={cur}>{cur}</option>
+          {CURRENCIES.map((c) => (
+            <option key={c.code} value={c.code}>
+              {c.code} - {c.name}
+            </option>
           ))}
         </select>
       </div>
 
-      <div className="bg-gray-100 p-3 rounded shadow">
+      <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded shadow text-center text-lg">
         {loading ? (
-          <p>Loading...</p>
+          <p className="text-blue-600">در حال تبدیل...</p>
         ) : error ? (
-          <p className="text-red-500">{error}</p>
+          <p className="text-red-600">{error}</p>
         ) : result !== null ? (
-          <p className="text-lg">
-            {amount} {from} ={" "}
-            <strong>
-              {result.toFixed(2)} {to}
+          <p>
+            {amount.toLocaleString()} {from} ={" "}
+            <strong className="text-green-600">
+              {result.toLocaleString()} {to}
             </strong>
           </p>
         ) : (
-          <p className="text-gray-500">No result yet</p>
+          <p className="text-gray-500">مقدار تبدیل نمایش داده می‌شود</p>
         )}
       </div>
     </div>
