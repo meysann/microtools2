@@ -16,7 +16,6 @@ const config: Config = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     require('tailwindcss-rtl'),
-    require('@tailwindcss/line-clamp'),
   ],
 };
 

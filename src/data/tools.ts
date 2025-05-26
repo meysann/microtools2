@@ -1,3 +1,16 @@
+import { Tool } from "@/types";
+import AgeCalculator from "@/components/tools/AgeCalculator";
+import BmiCalculator from "@/components/tools/BmiCalculator";
+import PasswordGenerator from "@/components/tools/PasswordGenerator";
+import WordCounter from "@/components/tools/WordCounter";
+import TemperatureConverter from "@/components/tools/TemperatureConverter";
+import TimezoneConverter from "@/components/tools/TimezoneConverter";
+import QrCodeGenerator from "@/components/tools/QrCodeGenerator";
+import CurrencyConverter from "@/components/tools/CurrencyConverter";
+import IpLookup from "@/components/tools/IpLookup";
+import MarkdownPreviewer from "@/components/tools/MarkdownPreviewer";
+import WeatherChecker from "@/components/tools/WeatherChecker";
+
 export type ToolCategory =
   | "مبدل‌ها"
   | "محاسباتی"
@@ -6,17 +19,15 @@ export type ToolCategory =
   | "ابزار وب"
   | "ابزار AI";
 
-export interface Tool {
-  name: string;
-  slug: string;
-  icon: string;
-  category: ToolCategory;
-  description: string;
-  component: string;
-  tags?: string[];
-}
-
 export const tools: Tool[] = [
+  {
+    name: "ماشین حساب سن",
+    slug: "age-calculator",
+    icon: "🎂",
+    category: "محاسباتی",
+    description: "محاسبه سن دقیق با تقویم شمسی",
+    component: "AgeCalculator",
+  },
   {
     name: "ماشین حساب BMI",
     slug: "bmi",
@@ -24,7 +35,22 @@ export const tools: Tool[] = [
     category: "محاسباتی",
     description: "محاسبه شاخص توده بدنی (BMI)",
     component: "BmiCalculator",
-    tags: ["BMI", "بدن", "شاخص"]
+  },
+  {
+    name: "تولید رمز عبور",
+    slug: "password-generator",
+    icon: "🔐",
+    category: "رمزنگاری",
+    description: "ساخت رمز عبور قوی و امن",
+    component: "PasswordGenerator",
+  },
+  {
+    name: "شمارنده کلمات",
+    slug: "word-counter",
+    icon: "✍️",
+    category: "متنی",
+    description: "شمارش کلمات، حروف، خطوط و کاراکترها",
+    component: "WordCounter",
   },
   {
     name: "مبدل دما",
@@ -33,87 +59,67 @@ export const tools: Tool[] = [
     category: "مبدل‌ها",
     description: "تبدیل بین سلسیوس، فارنهایت و کلوین",
     component: "TemperatureConverter",
-    tags: ["دما", "سلسیوس", "فار‌نهایت"]
-  },
-  {
-    name: "شمارنده کلمات",
-    slug: "word-counter",
-    icon: "✍️",
-    category: "متنی",
-    description: "شمارش تعداد کلمات و حروف یک متن",
-    component: "WordCounter",
-    tags: ["متن", "word", "count"]
-  },
-  {
-    name: "تولید رمز عبور",
-    slug: "password-generator",
-    icon: "🔐",
-    category: "رمزنگاری",
-    description: "تولید رمز عبور امن و تصادفی",
-    component: "PasswordGenerator",
-    tags: ["security", "password"]
   },
   {
     name: "تبدیل زمان منطقه‌ای",
     slug: "timezone-converter",
     icon: "🌐",
     category: "مبدل‌ها",
-    description: "تبدیل زمان بین مناطق زمانی مختلف",
+    description: "تبدیل زمان بین مناطق مختلف جهان",
     component: "TimezoneConverter",
-    tags: ["زمان", "ساعت", "جهانی"]
   },
   {
     name: "تولید QR Code",
     slug: "qr-code-generator",
     icon: "🔳",
     category: "ابزار وب",
-    description: "ساخت QR Code از متن یا لینک",
+    description: "ساخت بارکد QR از متن یا لینک",
     component: "QrCodeGenerator",
-    tags: ["qr", "code", "بارکد"]
-  },
-  {
-    name: "نمایش IP",
-    slug: "ip-lookup",
-    icon: "🌍",
-    category: "ابزار وب",
-    description: "اطلاعات IP کاربر و مکان تقریبی",
-    component: "IpLookup",
-    tags: ["ip", "geo", "ipinfo"]
-  },
-  {
-    name: "پیش‌نمایش Markdown",
-    slug: "markdown-previewer",
-    icon: "📝",
-    category: "متنی",
-    description: "پیش‌نمایش زنده متن Markdown",
-    component: "MarkdownPreviewer",
-    tags: ["markdown", "render", "preview"]
-  },
-  {
-    name: "ماشین حساب سن",
-    slug: "age-calculator",
-    icon: "🎂",
-    category: "محاسباتی",
-    description: "محاسبه سن دقیق با وارد کردن تاریخ تولد",
-    component: "AgeCalculator",
-    tags: ["سن", "تولد", "عمر"]
   },
   {
     name: "تبدیل ارز",
     slug: "currency-converter",
     icon: "💱",
     category: "مبدل‌ها",
-    description: "تبدیل ارز با نرخ زنده",
+    description: "تبدیل ارز با نرخ‌های زنده",
     component: "CurrencyConverter",
-    tags: ["ارز", "دلار", "یورو", "ریال"]
   },
   {
-    name: "وضعیت آب‌ و هوا",
+    name: "نمایش IP",
+    slug: "ip-lookup",
+    icon: "🌍",
+    category: "ابزار وب",
+    description: "بررسی IP و مکان جغرافیایی",
+    component: "IpLookup",
+  },
+  {
+    name: "پیش‌نمایش Markdown",
+    slug: "markdown-previewer",
+    icon: "📝",
+    category: "متنی",
+    description: "پیش‌نمایش زنده محتوای Markdown",
+    component: "MarkdownPreviewer",
+  },
+  {
+    name: "وضعیت آب و هوا",
     slug: "weather-checker",
     icon: "☁️",
     category: "ابزار وب",
-    description: "نمایش آب‌ و‌ هوای فعلی بر اساس موقعیت شما",
+    description: "اطلاع از وضعیت کنونی آب‌ و هوا",
     component: "WeatherChecker",
-    tags: ["آب‌وهوا", "آب و هوا", "آب‌ و‌ هوا"]
-  }
+  },
 ];
+
+export const toolComponents: Record<string, any> = {
+  AgeCalculator,
+  BmiCalculator,
+  PasswordGenerator,
+  WordCounter,
+  TemperatureConverter,
+  TimezoneConverter,
+  QrCodeGenerator,
+  CurrencyConverter,
+  IpLookup,
+  MarkdownPreviewer,
+  WeatherChecker,
+};
