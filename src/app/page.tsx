@@ -34,10 +34,10 @@ export default function HomePage() {
     <main className="bg-gray-50 dark:bg-slate-900 min-h-screen p-6 max-w-5xl mx-auto space-y-10 text-right">
       {/* Hero */}
       <section className="text-center space-y-4">
-        <h1 className="text-4xl font-extrabold text-blue-600 dark:text-blue-400">
+        <h1 className="text-4xl md:text-5xl font-extrabold leading-tight text-blue-600 dark:text-blue-400">
           🧰 ابزارها
         </h1>
-        <p className="text-lg text-gray-600 dark:text-slate-400">
+        <p className="text-base md:text-lg leading-relaxed text-gray-600 dark:text-slate-400">
           مجموعه‌ای از ابزارهای رایگان و ساده برای محاسبه، تبدیل، بررسی متن و
           موارد دیگر — بدون نیاز به ثبت‌نام
         </p>
@@ -48,7 +48,7 @@ export default function HomePage() {
         <input
           type="text"
           placeholder="🔍 جستجو بین ابزارها..."
-          className="w-full p-3 border border-gray-300 dark:border-slate-600 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+          className="text-base md:text-lg p-3 w-full border border-gray-300 dark:border-slate-600 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
@@ -57,7 +57,7 @@ export default function HomePage() {
       {/* Search Results or Default */}
       {search ? (
         <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-blue-700 dark:text-blue-400">
+          <h2 className="text-xl md:text-2xl font-bold text-blue-700 dark:text-blue-400">
             نتایج جستجو:
           </h2>
           {filteredTools.length === 0 ? (
@@ -73,12 +73,12 @@ export default function HomePage() {
                   className="block p-4 rounded bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 shadow-sm hover:shadow-md transition"
                 >
                   <div className="flex justify-between items-center mb-2">
-                    <span className="font-medium text-gray-900 dark:text-white">
+                    <span className="text-base md:text-lg font-semibold text-gray-900 dark:text-white">
                       {tool.name}
                     </span>
                     <span>{tool.icon}</span>
                   </div>
-                  <p className="text-sm text-gray-600 dark:text-slate-400">
+                  <p className="text-sm md:text-base leading-relaxed text-gray-600 dark:text-slate-400">
                     {tool.description}
                   </p>
                 </Link>
@@ -88,9 +88,9 @@ export default function HomePage() {
         </section>
       ) : (
         <>
-          {/* ✅ Category Section with ID */}
+          {/* Category Section with ID */}
           <section id="categories">
-            <h2 className="text-2xl font-semibold mb-4 text-blue-700 dark:text-blue-400">
+            <h2 className="text-2xl md:text-3xl font-bold text-blue-700 dark:text-blue-400 mb-4">
               📂 دسته‌بندی ابزارها
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -101,7 +101,7 @@ export default function HomePage() {
                   className="block p-4 rounded bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 shadow-sm hover:shadow-md transition"
                 >
                   <div className="flex justify-between items-center">
-                    <span className="font-semibold text-gray-900 dark:text-white">
+                    <span className="text-base font-semibold text-gray-900 dark:text-white">
                       {category.name}
                     </span>
                     <span className="text-sm text-gray-500 dark:text-slate-400">
@@ -113,7 +113,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          {/* ✅ Popular Tools with ID */}
+          {/* Popular Tools with ID */}
           <section id="popular-tools">
             <h2 className="text-xl font-semibold mt-8 mb-4 text-blue-700 dark:text-blue-400">
               🌟 ابزارهای پر استفاده
@@ -126,7 +126,7 @@ export default function HomePage() {
                   className="block p-3 rounded bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 shadow-sm hover:shadow-md transition text-center"
                 >
                   <div className="text-3xl mb-1">{tool.icon}</div>
-                  <div className="font-medium text-gray-900 dark:text-white">
+                  <div className="text-sm md:text-base font-semibold text-gray-900 dark:text-white">
                     {tool.name}
                   </div>
                 </Link>
