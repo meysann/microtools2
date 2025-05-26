@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 
 export default function QrCodeGenerator() {
@@ -23,33 +24,36 @@ export default function QrCodeGenerator() {
   };
 
   return (
-    <div className="space-y-4 max-w-md">
+    <div className="space-y-6 max-w-md mx-auto text-right">
+      <h2 className="text-xl font-bold">📷 تولید کد QR</h2>
+
       <input
         type="text"
         value={input}
         onChange={(e) => setInput(e.target.value)}
-        placeholder="Enter text or URL"
-        className="w-full border p-2 rounded"
+        placeholder="متن یا لینک خود را وارد کنید"
+        className="w-full border p-2 rounded dark:bg-gray-800 dark:text-white"
       />
+
       <button
         onClick={handleGenerate}
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 w-full"
       >
-        Generate QR Code
+        ساخت کد QR
       </button>
 
       {showQR && (
-        <div className="text-center space-y-2">
+        <div className="text-center space-y-4">
           <img
             src={qrUrl}
-            alt="QR Code"
+            alt="کد QR"
             className="mx-auto border rounded shadow"
           />
           <button
             onClick={handleDownload}
             className="text-blue-600 hover:underline text-sm"
           >
-            Download PNG
+            📥 دانلود کد QR به صورت PNG
           </button>
         </div>
       )}
