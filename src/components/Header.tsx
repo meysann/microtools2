@@ -34,7 +34,7 @@ export default function Header() {
     timerRef.current = setTimeout(() => {
       setMenuOpen(false);
       setActiveCategory(null);
-    }, 200); // 200ms grace period to prevent flicker
+    }, 200);
   };
 
   return (
@@ -43,7 +43,7 @@ export default function Header() {
         className="max-w-6xl mx-auto flex justify-between items-center p-4 text-sm"
         dir="rtl"
       >
-        {/* Right Section */}
+        {/* 👉 Right Side: Navigation links */}
         <div className="flex items-center gap-6 relative">
           <Link
             href="/"
@@ -66,7 +66,7 @@ export default function Header() {
             همه ابزارها
           </Link>
 
-          {/* Mega Menu Trigger Area */}
+          {/* Mega Menu */}
           <div
             className="relative"
             onMouseEnter={openMenu}
@@ -78,7 +78,7 @@ export default function Header() {
 
             {menuOpen && (
               <div className="absolute right-0 mt-2 w-[750px] h-[300px] bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded shadow-lg z-50 grid grid-cols-2 text-right overflow-hidden">
-                {/* Categories Column */}
+                {/* Categories */}
                 <div className="p-4 border-l border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900">
                   <h4 className="text-sm font-bold text-blue-600 dark:text-blue-400 mb-2">
                     دسته‌بندی‌ها
@@ -100,7 +100,7 @@ export default function Header() {
                   </ul>
                 </div>
 
-                {/* Tools Column */}
+                {/* Tools */}
                 <div className="p-4">
                   <h4 className="text-sm font-bold text-blue-600 dark:text-blue-400 mb-2">
                     {activeCategory || "ابزارها"}
@@ -127,9 +127,17 @@ export default function Header() {
               </div>
             )}
           </div>
+
+          {/* ✅ About added here inside main nav group */}
+          <Link
+            href="/about"
+            className="text-gray-700 dark:text-white hover:text-blue-600 dark:hover:text-blue-400"
+          >
+            درباره ما
+          </Link>
         </div>
 
-        {/* Theme Toggle */}
+        {/* 🌙 Theme Toggle Left-Aligned */}
         <ThemeToggle />
       </nav>
     </header>
